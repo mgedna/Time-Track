@@ -22,6 +22,7 @@ secrets.json
 
 # Baza de date locală (evită urcarea connection string-ului local)
 appsettings.Development.json
+appsettings.json
 
 # Entity Framework Migrations (optional, doar dacă vrei să le ignori)
 # Migrations/
@@ -45,3 +46,5 @@ TestResults/
 # Cache folders
 **/.cache/
 .cache/
+
+src/TimeTrack.Infrastructure/time-track-ff67a-firebase-adminsdk-*.json

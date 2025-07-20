@@ -1,0 +1,41 @@
+﻿using Microsoft.AspNetCore.Authentication;
+using TimeTrack.Domain;
+using TimeTrack.Infrastructure;
+
+namespace TimeTrack.WebApi.Handlers
+{
+    public static class DIHelper
+    {
+        public static IServiceCollection AddProjectDependencies(this IServiceCollection services, IConfiguration configuration)
+        {
+            //services.AddApplicationServices();
+            services.AddInfrastructureServices(configuration);
+            //services.AddPersistenceServices(configuration);
+            services.AddDomainDependencies(configuration);
+            return services;
+        }
+
+        public static IServiceCollection AddFirebaseAuthentication(this IServiceCollection services)
+        {
+            services.AddAuthentication("Firebase")
+                .AddScheme<AuthenticationSchemeOptions, FirebaseAuthenticationHandler>(
+                    "Firebase", options => { }
+                );
+            services.AddAuthorization();
+            return services;
+        }
+
+        public static IServiceCollection AddExternalServices(this IServiceCollection services, IConfiguration configuration)
+        {
+            return services;
+        }
+
+        public static IServiceCollection DependenciesOrchestrator(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddProjectDependencies(configuration);
+            services.AddFirebaseAuthentication();
+            services.AddExternalServices(configuration);
+            return services;
+        }
+    }
+}
