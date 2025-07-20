@@ -1,0 +1,47 @@
+# Build results
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+
+# Rider files (dacă folosești JetBrains Rider)
+.idea/
+
+# Nu include fișierele de logs
+*.log
+
+# Packages
+*.nupkg
+*.snupkg
+
+# User secrets
+secrets.json
+
+# Baza de date locală (evită urcarea connection string-ului local)
+appsettings.Development.json
+
+# Entity Framework Migrations (optional, doar dacă vrei să le ignori)
+# Migrations/
+
+# Configurări locale Docker, dacă folosești
+docker-compose.override.yml
+
+# System files
+Thumbs.db
+.DS_Store
+
+# Publish folder
+publish/
+
+# Test results
+TestResults/
+
+# JetBrains Rider generated folder
+.idea/
+
+# Cache folders
+**/.cache/
+.cache/
