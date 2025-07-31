@@ -1,4 +1,6 @@
-﻿namespace TimeTrack.Domain.Entities;
+﻿using TimeTrack.Domain.Enums;
+
+namespace TimeTrack.Domain.Entities;
 
 public class User
 {
@@ -8,7 +10,7 @@ public class User
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
 
-    public string Role { get; set; } = "Employee";   // Employee / TeamLead / Manager / HR / Admin
+    public Role Role { get; set; } = Role.Employee;
     public string? ManagerFirebaseUid { get; set; }
 
     public string Department { get; set; } = string.Empty;

@@ -1,4 +1,6 @@
-﻿namespace TimeTrack.Domain.Entities;
+﻿using TimeTrack.Domain.Enums;
+
+namespace TimeTrack.Domain.Entities;
 
 public class OvertimeRequest
 {
@@ -6,5 +8,5 @@ public class OvertimeRequest
     public string UserFirebaseUid { get; set; }
     public DateTime Date { get; set; }
     public double Hours { get; set; }
-    public string Status { get; set; } = "Pending";
+    public LeaveStatus Status { get; set; } = LeaveStatus.Pending;
 }

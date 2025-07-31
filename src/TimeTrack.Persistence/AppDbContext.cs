@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TimeTrack.Domain.Entities;
+using TimeTrack.Domain.Enums;
 
 namespace TimeTrack.Persistence;
 
@@ -20,7 +21,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
         {
             entity.HasKey(u => u.FirebaseUid);
             entity.Property(u => u.Email).IsRequired();
-            entity.Property(u => u.Role).IsRequired();
+            entity.Property(u => u.Role)
+              .HasConversion<string>()
+              .IsRequired();
+
             entity.Property(u => u.IsActive).HasDefaultValue(true);
             entity.Property(u => u.DateCreated).HasDefaultValueSql("NOW()");
         });
@@ -43,7 +47,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
             entity.Property(l => l.StartDate).IsRequired();
             entity.Property(l => l.EndDate).IsRequired();
             entity.Property(l => l.Reason).HasMaxLength(500);
-            entity.Property(l => l.Status).HasDefaultValue("Pending");
+            entity.Property(l => l.Status)
+              .HasConversion<string>()
+              .HasDefaultValue(LeaveStatus.Pending);
 
             entity.HasOne<User>()
                   .WithMany()
@@ -56,7 +62,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
             entity.HasKey(o => o.Id);
             entity.Property(o => o.Date).IsRequired();
             entity.Property(o => o.Hours).IsRequired();
-            entity.Property(o => o.Status).HasDefaultValue("Pending");
+            entity.Property(o => o.Status)
+              .HasConversion<string>()
+              .HasDefaultValue(LeaveStatus.Pending);
 
             entity.HasOne<User>()
                   .WithMany()
