@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using TimeTrack.Domain;
+using TimeTrack.Domain.Configuration;
+using TimeTrack.Domain.ExceptionTypes;
 using TimeTrack.Infrastructure;
+using TimeTrack.Persistence;
 
 namespace TimeTrack.WebApi.Handlers
 {
@@ -8,9 +11,12 @@ namespace TimeTrack.WebApi.Handlers
     {
         public static IServiceCollection AddProjectDependencies(this IServiceCollection services, IConfiguration configuration)
         {
+            var connectionStrings = configuration.GetSection("ConnectionStrings").Get<ConnectionStrings>();
+
             //services.AddApplicationServices();
             services.AddInfrastructureServices(configuration);
-            //services.AddPersistenceServices(configuration);
+            services.AddPersistenceServices(connectionStrings ?? throw new CustomNotFound("Connection strings properties are missing from configurable file.")
+);
             services.AddDomainDependencies(configuration);
             return services;
         }

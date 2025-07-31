@@ -8,12 +8,18 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TimeTrack.Application\TimeTrack.Application.csproj" />
     <ProjectReference Include="..\TimeTrack.Domain\TimeTrack.Domain.csproj" />
     <ProjectReference Include="..\TimeTrack.Infrastructure\TimeTrack.Infrastructure.csproj" />
+    <ProjectReference Include="..\TimeTrack.Persistence\TimeTrack.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
