@@ -4,6 +4,7 @@ using TimeTrack.Domain.Configuration;
 using TimeTrack.Domain.ExceptionTypes;
 using TimeTrack.Infrastructure;
 using TimeTrack.Persistence;
+using TimeTrack.Application;
 
 namespace TimeTrack.WebApi.Handlers
 {
@@ -13,7 +14,8 @@ namespace TimeTrack.WebApi.Handlers
         {
             var connectionStrings = configuration.GetSection("ConnectionStrings").Get<ConnectionStrings>();
 
-            //services.AddApplicationServices();
+            services.AddApplicationServices(configuration);
+
             services.AddInfrastructureServices(configuration);
             services.AddPersistenceServices(connectionStrings ?? throw new CustomNotFound("Connection strings properties are missing from configurable file.")
 );
